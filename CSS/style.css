@@ -1,0 +1,26 @@
+
+body{
+    color:white;
+    background-color: blue;
+    font-family: 'Press Start 2P', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 0 red;
+}
+
+/*HEADER*/
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+/*Contenedor-juego*/
+h2 {
+    text-align: center;
+    font-size: small;
+}
+
+#titulo-elige-arma{
+    font-size: 25px;
+    
+}
