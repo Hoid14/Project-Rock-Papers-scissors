@@ -89,10 +89,10 @@ function comparar(playerSelection,computerSelection){
     (playerSelection === "tijera" && computerSelection === "papel")
   ) {
     resultado=  "Jugador";
-    mensajeResultado.textContent="Jugador gano la ronda"
+    mensajeResultado.textContent="Jugador gana: "+playerSelection+" vence a "+computerSelection;
   } else {
     resultado=  "Maquina";
-    mensajeResultado.textContent="Maquina gano la ronda"
+    mensajeResultado.textContent="Maquina gana: "+computerSelection+" vence a "+playerSelection;
   }
   actualizarPuntuacion(resultado);
 }
@@ -116,12 +116,12 @@ function actualizarPuntuacion(resultado){
 function declararGanador(){
   if(rondas==5){
     if (puntajeMaquina>puntajeJugador){
-      mensajeResultado.textContent="Las maquinas exterminaron a los humanos";
+      mensajeResultado.textContent="Maquina gano la partida, los humanos fueron exterminados";
     }
     else{
-      mensajeResultado.textContent="Los humanos viviran un dia mas";
+      mensajeResultado.textContent="Jugador gano la partida, los humanos viviran un dia mas";
     }
-    setTimeout(reiniciarPuntuaciones,3000);
+    setTimeout(reiniciarPuntuaciones,4000);
   } 
 }
 /*reiniciar puntuaciones*/
