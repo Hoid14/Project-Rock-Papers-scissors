@@ -5,22 +5,100 @@ body{
     font-family: 'Press Start 2P', sans-serif;
     color: white;
     text-shadow: 2px 2px 0 red;
+    width:100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 /*HEADER*/
-h1 {
+header #titulo-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 15px;
 }
+header #pregunta {
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 20px;
 
+}
 
 /*Contenedor-juego*/
-h2 {
+
+/*Animacion de elige un arma*/
+#titulo-elige-arma{
+    position: relative;
+    top: -100vh;
+    transition: top 0.5s;
+    font-size: 15px;
     text-align: center;
-    font-size: small;
 }
 
-#titulo-elige-arma{
-    font-size: 25px;
+@keyframes pulso {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+#titulo-elige-arma.mostrar{
+    top:0;
+    animation: pulso 1.2s ease-out infinite;
+}
+
+
+
+#armas-puntuacion{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#armas-puntuacion.mostrar{
+    opacity: 1;
+}
+
+#armas-jugador{
+    display: flex;
+    justify-content: center;
+    text-align: center;
     
+}
+
+#armas-jugador img{
+    width: 20px;
+    height: 20px;
+    padding: 20px;
+    margin:20px;
+    border: 1px solid white;
+    background-color: black;
+    transition: transform 0.1s ease;
+}
+
+#armas-jugador img:hover{
+    box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5);
+    cursor:pointer;
+    transform: scale(1.1); 
+    
+}
+
+
+
+#mensaje-resultado{
+    text-align: center;
+}
+
+#puntuaciones{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#puntuaciones div{
+    margin: 10px 20px 0px 20px;
 }
