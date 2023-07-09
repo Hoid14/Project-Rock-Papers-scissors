@@ -1,10 +1,10 @@
 
 
-/*animacion pregunta*/ 
+/*animaciones*/ 
 var pregunta=false
 var app = document.getElementById('pregunta');
 
-var string='TIENES LO QUE NECESARIO PARA SALVAR A LA HUMANIDAD?'
+var string='TIENES LO NECESARIO PARA SALVAR A LA HUMANIDAD?'
 var retraso=20;
 function animacionPregunta(){
   
@@ -20,7 +20,6 @@ function animacionPregunta(){
   
   pregunta=true;
   
-
 }
 
 
@@ -46,4 +45,104 @@ function animacionArmasPuntuacion(){
 }
 setTimeout(animacionArmasPuntuacion, tiempoEligeTuArma+800);
 
+/*fin animaciones*/
+
+
+/*Juego*/
+let puntajeMaquina=0;
+let puntajeJugador=0;
+let rondas=0;
+
+let jugadorPuntuacion =document.getElementById("puntuacion-jugador");
+let maquinaPuntuacion =document.getElementById("puntuacion-maquina");
+
+let mensajeResultado=document.getElementById("mensaje-resultado");
+let mensajeOriginal= mensajeResultado.textContent;
+
+/*eleccion de la maquina*/
+function getComputerChoice(){
+  let numeroRandom=Math.floor(Math.random() * 3) + 1;
+  let eleccion;
+  if (numeroRandom==1){
+    eleccion="piedra"
+  }
+  else if (numeroRandom==2){
+    eleccion="papel";
+  }
+  else{
+    eleccion="tijera"
+  }
+  return eleccion;
+}
+
+
+
+/*comparar elecciones*/
+function comparar(playerSelection,computerSelection){
+  let resultado=null;
+  if (playerSelection === computerSelection) {
+    resultado= "Empate";
+    mensajeResultado.textContent="Empate"
+  } else if (
+    (playerSelection === "piedra" && computerSelection === "tijera") ||
+    (playerSelection === "papel" && computerSelection === "piedra") ||
+    (playerSelection === "tijera" && computerSelection === "papel")
+  ) {
+    resultado=  "Jugador";
+    mensajeResultado.textContent="Jugador gano la ronda"
+  } else {
+    resultado=  "Maquina";
+    mensajeResultado.textContent="Maquina gano la ronda"
+  }
+  actualizarPuntuacion(resultado);
+}
+
+/*actualizar puntuaciones*/
+function actualizarPuntuacion(resultado){
+  if(resultado=="Jugador"){
+    puntajeJugador++;
+    jugadorPuntuacion.textContent=puntajeJugador;
+    rondas++;
+  }
+  else if (resultado=="Maquina"){
+    puntajeMaquina++;
+    maquinaPuntuacion.textContent=puntajeMaquina;
+    rondas++;
+  }
+  console.log(rondas);
+  declararGanador();
+}
+/*declarar ganador*/
+function declararGanador(){
+  if(rondas==5){
+    if (puntajeMaquina>puntajeJugador){
+      mensajeResultado.textContent="Las maquinas exterminaron a los humanos";
+    }
+    else{
+      mensajeResultado.textContent="Los humanos viviran un dia mas";
+    }
+    setTimeout(reiniciarPuntuaciones,3000);
+  } 
+}
+/*reiniciar puntuaciones*/
+function reiniciarPuntuaciones(){
+  puntajeMaquina=0;
+  puntajeJugador=0;
+  rondas=0;
+  mensajeResultado.textContent=mensajeOriginal;
+  jugadorPuntuacion.textContent=puntajeJugador;
+  maquinaPuntuacion.textContent=puntajeMaquina;
+}
+/*eleccion del jugador*/
+document.getElementById("piedra").addEventListener("click", function(){
+  comparar(this.id,getComputerChoice());
+});
+document.getElementById("papel").addEventListener("click", function(){
+  comparar(this.id,getComputerChoice());
+});
+document.getElementById("tijera").addEventListener("click", function(){
+  comparar(this.id,getComputerChoice());
+});
+
+/*fin juego*/
 
